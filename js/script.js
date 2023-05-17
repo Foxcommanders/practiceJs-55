@@ -58,9 +58,9 @@
 // const result = formatFrace.includes("sale");
 // console.log(result);
 
-const frase = "Latest technology news";
-const frase1 = "Get best sale offers now!";
-const frase2 = "Get best sale offers now!";
+// const frase = "Latest technology news";
+// const frase1 = "Get best sale offers now!";
+// const frase2 = "Get best sale offers now!";
 
-const result = frase2.toLowerCase().includes('sale');
-console.log(result);
+// const result = frase2.toLowerCase().includes('sale');
+// console.log(result);

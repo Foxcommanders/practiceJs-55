@@ -1,117 +1,183 @@
-// Напишіть функцію isBookAlreadyRead для відображення статусу читання (тобто відображення назви книги, імені автора та статусу читання) наступних книг.Наприклад "Already read " + "book" by author або "You still need to read " + "book" by author
-// const library = [
-//   {
-//     title: 'Bill Gates',
-//     author: 'The Road Ahead',
-//     readingStatus: true,
+//======================
+// const user = {
+//   name: "Den",
+//   age: 43,
+//   skills: {
+//     html: true,
+//     css: true,
+//     js: true,
 //   },
-//   {
-//     title: 'Steve Jobs',
-//     author: 'Walter Isaacson',
-//     readingStatus: true,
-//   },
-//   {
-//     title: 'Mockingjay: The Final Book of The Hunger Games',
-//     author: 'Suzanne Collins',
-//     readingStatus: false,
-//   },
-// ];
-// function isAlreadyRead(library) {
-//   for (const book of library) {
-//     // console.log(book);
-//     // console.log(book.readingStatus);
-//     if (book.readingStatus) {
-//       console.log(`Already read "${book.title}" by ${book.author}`);
+// };
+
+// const copy = { ...user };
+// copy.name = "Max";
+// // copy.skills.js = false;
+// console.log(user);
+// console.log(copy);
+// // JSON.parse(JSON.stringify())
+// // Object.assign()
+
+// //https://uk.javascript.info/recursion
+
+// //Єдиний метод без використання бібліотек для ПОВНОГО клонування масиву
+// function copyArr(arr) {
+//   let res = [];
+//   for (let i in arr) {
+//     res.push(arr[i]);
+//   }
+//   return res;
+// }
+// //Єдиний метод без використання бібліотек для ПОВНОГО клонування об'єкту
+// function copyObj(obj) {
+//   const res = {};
+//   for (let key in obj) {
+//     if (typeof obj[key] === "object") {
+//       if (obj[key].length !== undefined) {
+//         res[key] = copyArr(obj[key]);
+//       } else {
+//         res[key] = copyObj(obj[key]);
+//       }
 //     } else {
-//       console.log(`You still need to read "${book.title}" by ${book.author}`);
+//       res[key] = obj[key];
 //     }
 //   }
+//   return res;
 // }
-// isAlreadyRead(library);
+
+// const deepClone = copyObj(user);
+// console.log(deepClone);
+
+// deepClone.skills.js = false;
 
 //======================
 
-// // Обнови значення кожної властивості так, що перед сумою стояв знак долара.
-// // Виводь результат у форматі name: $salary
-
-// const salaries = {
-//   Jack: 24000,
-//   Paul: 34000,
-//   Monica: 55000,
-// };
-// const prefix = '$';
-
-// // console.log(prefix);
-// // for (const key in salaries) {
-// //     console.log(salaries[key]);
-// //     salaries[key] = prefix + " " + salaries[key];
-// // }
-// // console.log(salaries);
-
-// const keys = Object.keys(salaries);
-
-// for (const key of keys) {
-//   console.log(key);
-//   salaries[key] = `$${salaries[key]}`;
+// Напиши функцію transformUsername(user) так, щоб вона повертала новий об'єкт із властивістю fullName, замість firstName та lastName. Викоритовуй rest оператор.
+// //==================================================rest====
+// function transformUsername({ firstName, lastName, ...args }) {
+//   return {
+//     fullName: `${firstName} ${lastName}`,
+//     //===spread==
+//     ...args,
+//   };
 // }
-// console.log(salaries);
+// console.log(
+//   transformUsername({
+//     id: 1,
+//     firstName: "Jacob",
+//     lastName: "Mercer",
+//     email: "j.mercer@mail.com",
+//   })
+// );
+// const user = {
+//   id: 1,
+//     firstName: "Jacob",
+//     lastName: "Mercer",
+//     email: "j.mercer@mail.com",
+// }
+// //=============================rest===(під час параметрів)
+// const {firstName, lastName, ...props} = user;
+// //===============spread===============(під час аргументів)
+// const user2 = {...props};
 
 //======================
 
-// 1 Створити метод об'єкту який буде приймати 1 параметр назву факультету та повертати списoк імен учнів факультету
-// 2 Створити метод об'єкту який буде приймати 1 параметр назву факультету та повертати кількість очків факультета
-// 3 Створити метод об'єкту який буде виводити ім'я факультету в якого більше очків
+// 1 Створити функцію яка буде приймати 2 параметри
+//    1 параметр масив
+//    2 параметр назва книги
+// Функція повертає Імена юзерів (формат стрінги) в яких є ця книга ("Harry Potter") \\\ "Anna, Oleksii"
+// 2 Порахувати вік всіх юзерів у яких є ключ age.
+// const friends = [{ name: "Anna", books: ["Bible", "Harry Potter"], age: 21 },
+//     { name: "Bob", books: ["War and peace", "Romeo and Juliet"], age: 26 },
+//     { name: "Alice", books: ["War and peace", "Romeo and Juliet"]},
+//     { name: "Oleksii", books: ["Bible","War and peace","Harry Potter",  "Romeo and Juliet"], age: 26},
+// ]
 
-const hogvarts = {
-  griffindor: [
-    {
-      name: 'Harry',
-      points: 17,
-    },
-    {
-      name: 'Hermiona',
-      points: 19,
-    },
-    {
-      name: 'Ron',
-      points: 14,
-    },
-  ],
-  sliserin: [
-    {
-      name: 'Draco',
-      points: 17,
-    },
-    {
-      name: 'Goyl',
-      points: 14,
-    },
-    {
-      name: 'Crabbe',
-      points: 5,
-    },
-  ],
-  getStudentsList(nameFaculty) {
-    const names = [];
-    for (const student of this[nameFaculty]) {
-      // console.log(student.name);
-      names.push(student.name);
-    }
-    console.log(names);
-    return names;
-    // console.log(this[nameFaculty]);
+//======================
+
+// 1 Створити функцію яка буде приймати 2 параметри
+//    1 параметр масив
+//    2 параметр назва книги
+// Функція повертає Імена юзерів (формат стрінги) в яких є ця книга (“Harry Potter”) \\\ “Anna, Oleksii”
+// 2 Порахувати вік всіх юзерів у яких є ключ age.
+// const friends = [
+//   { name: “Anna”, books: [“Bible”, “Harry Potter”], age: 21 },
+//   { name: “Bob”, books: [“War and peace”, “Romeo and Juliet”], age: 26 },
+//   { name: “Alice”, books: [“War and peace”, “Romeo and Juliet”] },
+//   {
+//     name: “Oleksii”,
+//     books: [“Bible”, “War and peace”, “Harry Potter”, “Romeo and Juliet”],
+//     age: 26,
+//   },
+// ];
+// function sum(arr) {
+//   let total = 0;
+//   for (let { age } of arr) {
+//     if (age) {
+//       total += age;
+//     }
+//   }
+//   return total;
+// }
+// console.log(sum(friends));
+// function getUsers(arr, bookName) {
+//   let users = [];
+//   for (let { name, books } of arr) {
+//     if (books.includes(bookName)) {
+//       users.push(name);
+//       console.log(users);
+//     }
+//   }
+//   return users.join(“, “);
+// }
+// console.log(getUsers(friends, “Harry Potter”));
+
+//======================
+
+// Потрібно створити функцію яка буде приймати 2 параметри
+// 1  значення від якої суми робити пошук
+// 2  значення до якої суми робити пошук
+// Повертає список автомобілів які підпадають під наш пошук
+
+const cars = [
+  {
+    model: 'Honda',
+    type: 'Civic',
+    price: 12000,
+    img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTCOHzdE-dK6WK7ax8NzQolTcCWA_jhJD-CRGWfqKJIJuGs8ML_-OyiDwzsdC8jOi_K10&usqp=CAU',
   },
-  getTotalPoints(nameFaculty) {
-    // console.log(nameFaculty);
-    // console.log (this[nameFaculty])
-    let total = 0;
-    for (const student of this[nameFaculty]) {
-      // console.log(student.points);
-      total += student.points;
-    }
-    console.log(total);
-    return total;
+  {
+    model: 'Audi',
+    type: 'Q7',
+    price: 40000,
+    img: 'https://upload.wikimedia.org/wikipedia/commons/8/8b/2017_Audi_Q7_S_Line_Quattro_3.0_Front.jpg',
   },
-};
-hogvarts.getStudentsList('griffindor');
-hogvarts.getTotalPoints('griffindor');
+  {
+    model: 'BMW',
+    type: '5 siries',
+    price: 9000,
+    img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUH96e58ynLO8SXMsFTNYkJci79eAZ8CyqcZsZ8snvzz2sfLl3Ojd1BQoaWBcrMKWvSYc&usqp=CAU',
+  },
+  {
+    model: 'Honda',
+    type: 'Accord',
+    price: 20000,
+    img: 'https://upload.wikimedia.org/wikipedia/commons/7/76/2021_Honda_Accord_Sport_%28facelift%29%2C_front_11.30.21.jpg',
+  },
+  {
+    model: 'Volvo',
+    type: 'XC60',
+    price: 7000,
+    img: 'https://www.volvocars.com/media/shared-assets/master/images/pages/my19/xc60-my19/accessories/xc60my19_accessories_exteriorfeature2_1.jpg?w=320',
+  },
+];
+
+function search(start, end) {
+  let modelCars = [];
+  for (const { price, model, type } of cars) {
+    if (price >= start && price <= end) {
+      modelCars.push(`${model} ${type}`);
+    }
+  }
+  return modelCars;
+}
+console.log(search(5000, 10000));

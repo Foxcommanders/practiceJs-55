@@ -1,183 +1,176 @@
-//======================
-// const user = {
-//   name: "Den",
-//   age: 43,
-//   skills: {
-//     html: true,
-//     css: true,
-//     js: true,
+//====================== 41-v3
+// const atTheOldToad = {
+//   potions: [
+//     { name: 'Speed potion', price: 460 },
+//     { name: 'Dragon breath', price: 780 },
+//     { name: 'Stone skin', price: 520 },
+//   ],
+//   // Change code below this line
+//   getPotions() {
+//     return this.potions;
 //   },
+
+//   addPotion(newPotion) {
+//     const { potions } = this;
+//     for (const potion of potions) {
+//       if (potion.name === newPotion.name) {
+//         return `Error! Potion ${newPotion.name} is already in your inventory!`;
+//       }
+//     }
+//     potions.push(newPotion);
+//   },
+
+//   removePotion(potionName) {
+//     const { potions } = this;
+//     for (let i = 0; i < potions.length; i += 1) {
+//       const { name } = potions[i];
+//       if (name === potionName) {
+//         potions.splice(i, 1);
+//         return;
+//       }
+//     }
+//     return `Potion ${potionName} is not in inventory!`;
+//   },
+
+//   updatePotionName(oldName, newName) {
+//     const { potions } = this;
+//     for (const potion of potions) {
+//       if (potion.name === oldName) {
+//         potion.name = newName;
+//         return;
+//       }
+//     }
+//     return `Potion ${oldName} is not in inventory!`;
+//   },
+//   // Change code above this line
 // };
 
-// const copy = { ...user };
-// copy.name = "Max";
-// // copy.skills.js = false;
-// console.log(user);
-// console.log(copy);
-// // JSON.parse(JSON.stringify())
-// // Object.assign()
-
-// //https://uk.javascript.info/recursion
-
-// //Єдиний метод без використання бібліотек для ПОВНОГО клонування масиву
-// function copyArr(arr) {
-//   let res = [];
-//   for (let i in arr) {
-//     res.push(arr[i]);
-//   }
-//   return res;
-// }
-// //Єдиний метод без використання бібліотек для ПОВНОГО клонування об'єкту
-// function copyObj(obj) {
-//   const res = {};
-//   for (let key in obj) {
-//     if (typeof obj[key] === "object") {
-//       if (obj[key].length !== undefined) {
-//         res[key] = copyArr(obj[key]);
-//       } else {
-//         res[key] = copyObj(obj[key]);
-//       }
-//     } else {
-//       res[key] = obj[key];
-//     }
-//   }
-//   return res;
-// }
-
-// const deepClone = copyObj(user);
-// console.log(deepClone);
-
-// deepClone.skills.js = false;
-
 //======================
 
-// Напиши функцію transformUsername(user) так, щоб вона повертала новий об'єкт із властивістю fullName, замість firstName та lastName. Викоритовуй rest оператор.
-// //==================================================rest====
-// function transformUsername({ firstName, lastName, ...args }) {
-//   return {
-//     fullName: `${firstName} ${lastName}`,
-//     //===spread==
-//     ...args,
-//   };
-// }
-// console.log(
-//   transformUsername({
-//     id: 1,
-//     firstName: "Jacob",
-//     lastName: "Mercer",
-//     email: "j.mercer@mail.com",
-//   })
-// );
-// const user = {
-//   id: 1,
-//     firstName: "Jacob",
-//     lastName: "Mercer",
-//     email: "j.mercer@mail.com",
-// }
-// //=============================rest===(під час параметрів)
-// const {firstName, lastName, ...props} = user;
-// //===============spread===============(під час аргументів)
-// const user2 = {...props};
+// // Створити функцію яка приймає 1 параметр масив продуктів і повертає мутований масив
+// // Потрібно перебрати масив і якщо він має об'єкти в яких дублюються айді то квонтіті цих елементів потрібно сплюсувати
+// // а ті обє'кти в яких айді співпав видалити з масиву.
+// // (Потрібно мутувати масив, створювати новий не потрібно)
 
-//======================
-
-// 1 Створити функцію яка буде приймати 2 параметри
-//    1 параметр масив
-//    2 параметр назва книги
-// Функція повертає Імена юзерів (формат стрінги) в яких є ця книга ("Harry Potter") \\\ "Anna, Oleksii"
-// 2 Порахувати вік всіх юзерів у яких є ключ age.
-// const friends = [{ name: "Anna", books: ["Bible", "Harry Potter"], age: 21 },
-//     { name: "Bob", books: ["War and peace", "Romeo and Juliet"], age: 26 },
-//     { name: "Alice", books: ["War and peace", "Romeo and Juliet"]},
-//     { name: "Oleksii", books: ["Bible","War and peace","Harry Potter",  "Romeo and Juliet"], age: 26},
-// ]
-
-//======================
-
-// 1 Створити функцію яка буде приймати 2 параметри
-//    1 параметр масив
-//    2 параметр назва книги
-// Функція повертає Імена юзерів (формат стрінги) в яких є ця книга (“Harry Potter”) \\\ “Anna, Oleksii”
-// 2 Порахувати вік всіх юзерів у яких є ключ age.
-// const friends = [
-//   { name: “Anna”, books: [“Bible”, “Harry Potter”], age: 21 },
-//   { name: “Bob”, books: [“War and peace”, “Romeo and Juliet”], age: 26 },
-//   { name: “Alice”, books: [“War and peace”, “Romeo and Juliet”] },
+// const products = [
 //   {
-//     name: “Oleksii”,
-//     books: [“Bible”, “War and peace”, “Harry Potter”, “Romeo and Juliet”],
-//     age: 26,
+//     id: 'apple',
+//     qty: 1,
+//   },
+//   {
+//     id: 'lemon',
+//     qty: 2,
+//   },
+//   {
+//     id: 'banana',
+//     qty: 3,
+//   },
+//   {
+//     id: 'apple',
+//     qty: 6,
+//   },
+//   {
+//     id: 'apple',
+//     qty: 8,
+//   },
+//   {
+//     id: 'lemon',
+//     qty: 19,
+//   },
+//   {
+//     id: 'pineapple',
+//     qty: 1,
 //   },
 // ];
-// function sum(arr) {
-//   let total = 0;
-//   for (let { age } of arr) {
-//     if (age) {
-//       total += age;
+
+// function getUnic(products) {
+//   for (let i = 0; i < products.length; i += 1) {
+//     for (let j = products.length - 1; j > i; j -= 1) {
+//       if (products[i].id === products[j].id) {
+//         products[i].qty += products[j].qty;
+//         products.splice(j, 1);
+//       }
 //     }
 //   }
-//   return total;
 // }
-// console.log(sum(friends));
-// function getUsers(arr, bookName) {
-//   let users = [];
-//   for (let { name, books } of arr) {
-//     if (books.includes(bookName)) {
-//       users.push(name);
-//       console.log(users);
-//     }
-//   }
-//   return users.join(“, “);
-// }
-// console.log(getUsers(friends, “Harry Potter”));
+// getUnic(products);
+// console.log(products);
+
+// // function getUnic(products) {
+// //     for (let i = 0; i < products.length; i++) {
+
+// //         for (let j = i + 1; j < products.length; j++) {
+// //             // console.log("Наступний", products[j]);
+// //             if (products[i].id === products[j].id) {
+// //                 products[i].qty += products[j].qty
+// //                 // console.log("продукти які співпали", products[j]);
+// //                 products.splice(j, 1)
+// //                 j -= 1
+// //             }
+// //         }
+// //         // console.log("поточний", products[i]);
+// //     }
+
+// // }
+
+// // const products2 = [{
+// //     id: 'sku1',
+// //     qty: 1,
+// // }, {
+// //     id: 'sku2',
+// //     qty: 2,
+// // }, {
+// //     id: 'sku3',
+// //     qty: 3,
+// // }, {
+// //     id: 'sku1',
+// //     qty: 6,
+// // }, {
+// //     id: 'sku1',
+// //     qty: 8,
+// // }, {
+// //     id: 'sku2',
+// //     qty: 19,
+// // }, {
+// //     id: 'sku4',
+// //     qty: 1,
+// // }]
+
+// // getUnic(products2);
+// // console.log(products2);
 
 //======================
 
-// Потрібно створити функцію яка буде приймати 2 параметри
-// 1  значення від якої суми робити пошук
-// 2  значення до якої суми робити пошук
-// Повертає список автомобілів які підпадають під наш пошук
+// потрібно створити функцію яка буде формувати чергу в магазині
+// 1 перший параметр масив, кілікість елементів це кількість покіпців, значення елементу масиву це час який покупець витратить на касі
+// 2 параметр це кількість кас
+// Повертає обєкт де ключ це номер касси, значення це час черги на касі
+// 12 + 2 + 15 = 29
+// 3 + 5 + 6 + 7 = 21
+// { 1 : 29, 2 : 21}
+// function fn(buyers, cases) {
+//   const obj = {};
+//   for (let i = 1; i <= cases; i += 1) {
+//     obj[i] = 0;
+//   }
+//   for (const buyer of buyers) {
+//     const values = Object.values(obj);
+//     const min = Math.min(...values);
+//     const idx = values.indexOf(min) + 1; //компенсація індексу до каси 0:1
+//     obj[idx] += buyer;
+//   }
+//   return obj;
+// }
+// console.log(fn([12, 3, 5, 6, 2, 15, 7], 2));
 
-const cars = [
-  {
-    model: 'Honda',
-    type: 'Civic',
-    price: 12000,
-    img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTCOHzdE-dK6WK7ax8NzQolTcCWA_jhJD-CRGWfqKJIJuGs8ML_-OyiDwzsdC8jOi_K10&usqp=CAU',
-  },
-  {
-    model: 'Audi',
-    type: 'Q7',
-    price: 40000,
-    img: 'https://upload.wikimedia.org/wikipedia/commons/8/8b/2017_Audi_Q7_S_Line_Quattro_3.0_Front.jpg',
-  },
-  {
-    model: 'BMW',
-    type: '5 siries',
-    price: 9000,
-    img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUH96e58ynLO8SXMsFTNYkJci79eAZ8CyqcZsZ8snvzz2sfLl3Ojd1BQoaWBcrMKWvSYc&usqp=CAU',
-  },
-  {
-    model: 'Honda',
-    type: 'Accord',
-    price: 20000,
-    img: 'https://upload.wikimedia.org/wikipedia/commons/7/76/2021_Honda_Accord_Sport_%28facelift%29%2C_front_11.30.21.jpg',
-  },
-  {
-    model: 'Volvo',
-    type: 'XC60',
-    price: 7000,
-    img: 'https://www.volvocars.com/media/shared-assets/master/images/pages/my19/xc60-my19/accessories/xc60my19_accessories_exteriorfeature2_1.jpg?w=320',
-  },
-];
+//======================
 
-function search(start, end) {
-  let modelCars = [];
-  for (const { price, model, type } of cars) {
-    if (price >= start && price <= end) {
-      modelCars.push(`${model} ${type}`);
-    }
-  }
-  return modelCars;
-}
-console.log(search(5000, 10000));
+// // Є рядок в якому довільна кількість літер, гарантовано в рядку немає пробілів та розділових знаків, потрібно повернути об'єкт де кожна літера буде ключем, а кількість раз яку вона дублюється буде значенням ключа
+// // const str = 'absdabsrgbadgtdswwbetflg';
+// // Результат на який очікуємо
+// // const obj = {
+// //     a: 3,
+// //     b: 4,
+// //     s: 2,
+// //     // ...
+// // }

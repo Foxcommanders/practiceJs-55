@@ -1,176 +1,158 @@
-//====================== 41-v3
-// const atTheOldToad = {
-//   potions: [
-//     { name: 'Speed potion', price: 460 },
-//     { name: 'Dragon breath', price: 780 },
-//     { name: 'Stone skin', price: 520 },
-//   ],
-//   // Change code below this line
-//   getPotions() {
-//     return this.potions;
-//   },
+//======================
 
-//   addPotion(newPotion) {
-//     const { potions } = this;
-//     for (const potion of potions) {
-//       if (potion.name === newPotion.name) {
-//         return `Error! Potion ${newPotion.name} is already in your inventory!`;
-//       }
-//     }
-//     potions.push(newPotion);
-//   },
+// Напишіть наступні функції:
+// // createProduct(obj, callback) - приймає об'єкт товару без id, а також коллбек. Функція створює об'єкт товару, додаючи йому унікальний ідентифікатор у властивість id та викликає коллбек передаючи йому створений об'єкт.
+// // logProduct(product) - колббек приймаючий об'єкт продукту і логуючий його в консоль
+// // logTotalPrice(product) - колббек, що приймає об'єкт продукту і логіює загальну вартість товару в консоль
+// function createProduct(obj, callback) {
+//   const product = {
+//     id: Date.now(),
+//     ...obj,
+//   };
+//   // callback(product);
+//   console.log(callback);
+// }
 
-//   removePotion(potionName) {
-//     const { potions } = this;
-//     for (let i = 0; i < potions.length; i += 1) {
-//       const { name } = potions[i];
-//       if (name === potionName) {
-//         potions.splice(i, 1);
-//         return;
-//       }
-//     }
-//     return `Potion ${potionName} is not in inventory!`;
-//   },
+// function logProduct(goods) {
+//   console.log(goods);
+// }
 
-//   updatePotionName(oldName, newName) {
-//     const { potions } = this;
-//     for (const potion of potions) {
-//       if (potion.name === oldName) {
-//         potion.name = newName;
-//         return;
-//       }
+// function logTotalPrice({ quantity, price }) {
+//   console.log(quantity * price);
+// }
+
+// createProduct({ name: "🍎", price: 30, quantity: 3 }, logProduct);
+// createProduct({ name: "🍋", price: 20, quantity: 5 }, logTotalPrice);
+
+//======================
+// //В об'єкта account є методи withdraw(amount, onSuccess, onError) та deposit(amount, onSuccess, onError),
+// //де перший параметр це сума операції, а другий та третій - коллбеки.
+// //Метод withdraw викликає onError якщо amount більше TRANSACTION_LIMIT або this.balance, і onSuccess в іншому випадку.
+// //Метод deposit викликає onError якщо amount більше TRANSACTION_LIMIT або менше або дорівнює нулю, і onSuccess в іншому випадку.
+// const TRANSACTION_LIMIT = 1000;
+
+// const account = {
+//   username: 'Jacob',
+//   balance: 1000,
+//   withdraw(amount, onSuccess, onError) {
+//     if (amount > TRANSACTION_LIMIT) {
+//       onError('perevysheno limit');
+//       console.log(onError);
+//     } else if (amount > this.balance) {
+//       onError('nedostatno na rahunku');
+//     } else {
+//       this.balance -= amount;
+//       onSuccess(`na rahunku ${this.balance}`);
 //     }
-//     return `Potion ${oldName} is not in inventory!`;
 //   },
-//   // Change code above this line
+//   deposit(amount, onSuccess, onError) {
+//     if (amount > TRANSACTION_LIMIT) {
+//       onError('perevysheno limit');
+//     } else if (amount <= 0) {
+//       onError('summ maje buty bilshe 0');
+//     } else {
+//       this.balance += amount;
+//       onSuccess(`na washomu rachunku ${this.balance}`);
+//     }
+//   },
 // };
 
-//======================
-
-// // Створити функцію яка приймає 1 параметр масив продуктів і повертає мутований масив
-// // Потрібно перебрати масив і якщо він має об'єкти в яких дублюються айді то квонтіті цих елементів потрібно сплюсувати
-// // а ті обє'кти в яких айді співпав видалити з масиву.
-// // (Потрібно мутувати масив, створювати новий не потрібно)
-
-// const products = [
-//   {
-//     id: 'apple',
-//     qty: 1,
-//   },
-//   {
-//     id: 'lemon',
-//     qty: 2,
-//   },
-//   {
-//     id: 'banana',
-//     qty: 3,
-//   },
-//   {
-//     id: 'apple',
-//     qty: 6,
-//   },
-//   {
-//     id: 'apple',
-//     qty: 8,
-//   },
-//   {
-//     id: 'lemon',
-//     qty: 19,
-//   },
-//   {
-//     id: 'pineapple',
-//     qty: 1,
-//   },
-// ];
-
-// function getUnic(products) {
-//   for (let i = 0; i < products.length; i += 1) {
-//     for (let j = products.length - 1; j > i; j -= 1) {
-//       if (products[i].id === products[j].id) {
-//         products[i].qty += products[j].qty;
-//         products.splice(j, 1);
-//       }
-//     }
-//   }
+// function handleSuccess(message) {
+//   console.log(`✅ Success! ${message}`);
 // }
-// getUnic(products);
-// console.log(products);
 
-// // function getUnic(products) {
-// //     for (let i = 0; i < products.length; i++) {
-
-// //         for (let j = i + 1; j < products.length; j++) {
-// //             // console.log("Наступний", products[j]);
-// //             if (products[i].id === products[j].id) {
-// //                 products[i].qty += products[j].qty
-// //                 // console.log("продукти які співпали", products[j]);
-// //                 products.splice(j, 1)
-// //                 j -= 1
-// //             }
-// //         }
-// //         // console.log("поточний", products[i]);
-// //     }
-
-// // }
-
-// // const products2 = [{
-// //     id: 'sku1',
-// //     qty: 1,
-// // }, {
-// //     id: 'sku2',
-// //     qty: 2,
-// // }, {
-// //     id: 'sku3',
-// //     qty: 3,
-// // }, {
-// //     id: 'sku1',
-// //     qty: 6,
-// // }, {
-// //     id: 'sku1',
-// //     qty: 8,
-// // }, {
-// //     id: 'sku2',
-// //     qty: 19,
-// // }, {
-// //     id: 'sku4',
-// //     qty: 1,
-// // }]
-
-// // getUnic(products2);
-// // console.log(products2);
-
-//======================
-
-// потрібно створити функцію яка буде формувати чергу в магазині
-// 1 перший параметр масив, кілікість елементів це кількість покіпців, значення елементу масиву це час який покупець витратить на касі
-// 2 параметр це кількість кас
-// Повертає обєкт де ключ це номер касси, значення це час черги на касі
-// 12 + 2 + 15 = 29
-// 3 + 5 + 6 + 7 = 21
-// { 1 : 29, 2 : 21}
-// function fn(buyers, cases) {
-//   const obj = {};
-//   for (let i = 1; i <= cases; i += 1) {
-//     obj[i] = 0;
-//   }
-//   for (const buyer of buyers) {
-//     const values = Object.values(obj);
-//     const min = Math.min(...values);
-//     const idx = values.indexOf(min) + 1; //компенсація індексу до каси 0:1
-//     obj[idx] += buyer;
-//   }
-//   return obj;
+// function handleError(message) {
+//   console.log(`❌ Error! ${message}`);
 // }
-// console.log(fn([12, 3, 5, 6, 2, 15, 7], 2));
+
+// account.withdraw(2000, handleSuccess, handleError);
+// account.withdraw(600, handleSuccess, handleError);
+// account.withdraw(300, handleSuccess, handleError);
+// account.deposit(1700, handleSuccess, handleError);
+// account.deposit(0, handleSuccess, handleError);
+// account.deposit(-600, handleSuccess, handleError);
+// account.deposit(600, handleSuccess, handleError);
 
 //======================
 
-// // Є рядок в якому довільна кількість літер, гарантовано в рядку немає пробілів та розділових знаків, потрібно повернути об'єкт де кожна літера буде ключем, а кількість раз яку вона дублюється буде значенням ключа
-// // const str = 'absdabsrgbadgtdswwbetflg';
-// // Результат на який очікуємо
-// // const obj = {
-// //     a: 3,
-// //     b: 4,
-// //     s: 2,
-// //     // ...
-// // }
+//Створи стрілочну функцію logItems(), яка виводить в консоль елементи масива, зроби перебір за допомогою методу forEach().
+
+// const logItems = (arr) => {
+//   arr.forEach((el, idx, arr)=>{
+//     console.log(idx +1, el)
+//   })
+// }
+
+// logItems(['Mango', 'Poly', 'Ajax']);
+// logItems(['🍎', '🍇', '🍑', '🍌', '🍋']);
+
+//===========================================
+
+// const calсulateAverage = (...rest) => {
+// //console.log(rest);
+// let average = 0;
+// rest.forEach(el => average += el);
+// return average/rest.length;
+
+// }
+
+// console.log(calсulateAverage(1, 2, 3, 4)); // 2.5
+// console.log(calсulateAverage(14, 8, 2)); // 8
+// console.log(calсulateAverage(27, 43, 2, 8, 36)); // 23.2
+
+// const calсulateAverage = (...rest) => {
+// //console.log(rest);
+// let average = 0;
+// const result = rest.forEach((el, __, arr) => average += el);
+// const result2 = rest.map(el => average + el);
+// console.log(result2);
+// return average/rest.length;
+
+// }
+
+// console.log(calсulateAverage(1, 2, 3, 4)); // 2.5
+// console.log(calсulateAverage(14, 8, 2)); // 8
+// console.log(calсulateAverage(27, 43, 2, 8, 36)); // 23.2
+
+// ====================================================================
+
+// Реалізувати функцію пошуку по товару, функція має повернути рядок в форматі назва товару + ціна
+// функція приймає один параметр ID товару
+
+const instruments = [
+  {
+    id: 1,
+    img: 'https://static.dnipro-m.ua/cache/products/1754/catalog_origin_141546.jpg',
+    name: 'Молоток',
+    price: 150,
+  },
+  {
+    id: 2,
+    img: 'https://static.dnipro-m.ua/cache/products/5098/catalog_origin_195568.jpg',
+    name: 'Перфоратор',
+    price: 3000,
+  },
+  {
+    id: 3,
+    img: 'https://static.dnipro-m.ua/cache/products/2023/catalog_origin_200763.jpg',
+    name: 'Рівень',
+    price: 2000,
+  },
+];
+
+function findTools(toolId) {
+  let message = 'not found';
+  instruments.forEach(({ id, name, price }) => {
+    if (id === toolId) {
+      //   console.log(name);
+      message = `${name}, ${price}`;
+      //   console.log(message);
+    }
+    console.log(name);
+  });
+  return message;
+}
+
+console.log(findTools(1));
+
+// =====================================================================

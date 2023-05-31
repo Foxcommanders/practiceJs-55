@@ -1,115 +1,153 @@
 // ====================================================================
-// Виправ помилки, які будуть в консолі, щоб скрипт запрацював.
-// const inventory = {
-//   items: ["Knife", "Gas mask"],
-//   add(itemName) {
-//     console.log(`Adding ${itemName} to inventory`);
+// // Напиши клас Client який створює об'єкт з властивостями login i email.Оголоси приватні властивості #login #email, доступ до яких зроби через геттер і сеттер login/email
 
-//     this.items.push(itemName);
-//   },
-//   remove(itemName) {
-//     console.log(`Removing ${itemName} from inventory`);
-
-//     this.items = this.items.filter((item) => item !== itemName);
-//   },
+// // Що буде у консолі?
+// const parent = {
+//   name: 'Luce',
+//   age: 35,
+//   heritage: 'Irish',
 // };
 
-// const invokeInventoryAction = function (itemName, action) {
-//   console.log(`Invoking action on ${itemName}`);
-//   action(itemName);
-// };
-// // console.log(inventory.add.bind(inventory)("item name"));
-// invokeInventoryAction("Medkit", inventory.add.bind(inventory));
-// // Invoking action on Medkit
-// // Adding Medkit to inventory
+// const child = Object.create(parent);
+// // console.log(child);
+// child.name = 'Bob';
+// child.age = 7;
 
-// console.log(inventory.items); // ['Knife', 'Gas mask', 'Medkit']
+// const child2 = Object.create(child);
+// console.log(child2);
+// console.log(child2.name);
+// console.log(child2.heritage);
 
-// invokeInventoryAction("Gas mask", inventory.remove.bind(inventory));
-// // Invoking action on Gas mask
-// // Removing Gas mask from inventory
-
-// console.log(inventory.items); // ['Knife', 'Medkit']
+// // console.log(child.name); // ?  Bob
+// // console.log(child.age); // ? 7
+// // console.log(child.heritage); // ? irish
 
 // ====================================================================
 
-// Виправ помилки, які будуть в консолі, щоб скрипт запрацював.
+// // Напиши клас Client який створює об'єкт з властивостями login i email.
+// // Оголоси приватні властивості #login #email,
+// // доступ до яких зроби через геттер і сеттер login / email
+// class Client {
+//   #login;
+//   #email;
 
-// const car = {
-//   registrationNumber: 'GA12345',
-//   brand: 'Toyota',
+//   constructor(newLogin, newEmail, newName) {
+//     this.name = newName;
+//     this.#login = newLogin;
+//     this.#email = newEmail;
+//   }
+//   get login() {
+//     return this.#login;
+//   }
+//   set login(newLogin) {
+//     if (newLogin) {
+//       this.#login = newLogin;
+//       return;
+//     }
+//     console.log('Error!');
+//   }
+//   get email() {
+//     return this.#email;
+//   }
+//   set email(newEmail) {
+//     if (newEmail) {
+//       this.#email = newEmail;
+//       return;
+//     }
+//     console.log('Error!');
+//   }
+//   get nameClient() {
+//     return this.name;
+//   }
+//   set nameClient(newName) {
+//     if (newName) {
+//       this.name = newName;
+//       return;
+//     }
+//     console.log('Error!');
+//   }
+// }
+// const mango = new Client('mango_log', 'mango@gmail.com', 'Mango');
+// console.log(mango);
+// // mango.#email = ''; // error
+// mango.email = 'new@gmail.com';
+// mango.name = '';
+// console.log(mango);
+// console.log(mango.name); // get
+// mango.name = 'Mango2'; //set
+// console.log(mango.name);
 
-// };
+// ====================================================================
 
-// function displayDetails(ownerName) {
-//   console.log(
-//     `${ownerName}, this is your car: ${this.registrationNumber} ${this.brand}`
-//   );
+// Напиши клас Client який створює об'єкт з властивостями login i email.Створити статичний метод і властивість підрахунку клієнтів підч час їх створення
+
+// class Client {
+//   static total = 0;
+//   static addClient() {
+//     this.total += 1;
+//   }
+//   constructor(newLogin, newEmail) {
+//     this.login = newLogin;
+//     this.email = newEmail;
+
+//     Client.addClient();
+//   }
 // }
 
-// const yourCar = displayDetails.bind(car);
+// const mango = new Client("Mango", "mango@gmail.com");
+// console.log(Client.total);
 
-// yourCar('Sofia');
+// ====================================================================
 
+// User;
+// email;
+// password;
+// email;
 
+// Human;
+// damage;
 
-Розстав відсутні this в методах об'єкта account.
-// const account = {
-//   owner: 'Mango',
-//   balance: 24000,
-//   discount: 0.1,
-//   orders: ['order-1', 'order-2', 'order-3'],
-//   changeDiscount(value) {
-//     this.discount = value;
-//   },
-//   showOrders() {
-//     return this.orders;
-//   },
-//   addOrder(cost, order) {
-//     this.balance -= cost;
-//     this.orders.push(order);
-//   },
-// };
+// Elf;
+// mana;
 
-// account.changeDiscount(0.15);
-// console.log(account.discount); // 0.15
+class User {
+  constructor(newName, newPassword, newEmail) {
+    this.name = newName;
+    this.password = newPassword;
+    this.email = newEmail;
+  }
 
-// console.table(account.showOrders()); // ['order-1', 'order-2', 'order-3']
+  changeName(newName) {
+    if (newName && newName.length >= 3) {
+      this.name = newName;
+    }
+  }
+}
 
-// account.addOrder(5000, 'order-4');
-// console.log(account.balance); // 19000
-// console.table(account.showOrders()); // ['order-1', 'order-2', 'order-3', 'order-4']
+class Human extends User {
+  constructor(newName, newPassword, newEmail, damage) {
+    super(newName, newPassword, newEmail);
+    this.damage = damage;
+  }
 
-//======================================================================
+  attack() {
+    console.log(`${this.name} attacked with ${this.damage}`);
+  }
+}
 
-//Що виведеться в консоль?
-// const directRoute = function (to = 'Chop') {
-//   console.log(`${this.from} => ${to}`);
-// };
+class Elf extends User {
+  constructor(newName, newPassword, newEmail, mana) {
+    super(newName, newPassword, newEmail);
+    this.mana = mana;
+  }
 
-// const train1 = {
-//   from: 'Kyiv',
-//   directRoute,
-// };
-// const train2 = {
-//   from: 'Lviv',
-//   directRoute,
-// };
+  spell() {
+    console.log(`AVADAKEDAVRA spell cost ${this.mana}`);
+  }
+}
 
-// directRoute.apply(train1, ['Vinnytsia']);//Kyiv => Vinnytsia
-// directRoute.call(train1);// Kyiv => Chop
-// train2.directRoute();//Lviv = Chop
-// train1.directRoute.call(train2, 'Odessa');//Lviv = Odessa
-
-// const yourDirectRoute = directRoute.bind(train1);//------------
-// yourDirectRoute();//Kyiv = Chop
-// yourDirectRoute('Kharkiv');//Kyiv = Kharkiv
-
-// const theirDirectRoute = directRoute.bind(train2, 'Poltava');//--------------
-// theirDirectRoute();//Lviv = Poltava
-// theirDirectRoute('Cherkasy');//Lviv = Poltava
-// theirDirectRoute.call(train1);//Lviv = Poltava
-
-// const anotherDirectRoute = train1.directRoute;//=======
-// console.log(anotherDirectRoute());//underfined
-
+const Max = new Human('Max', '123', 'max@gmail.com', '200');
+const Legolas = new Elf('Legolas', '324', 'leg@gmail.com', '350');
+console.log(Legolas);
+Max.changeName('Alex');
+console.log(Max);

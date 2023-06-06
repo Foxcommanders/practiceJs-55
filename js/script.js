@@ -1,110 +1,125 @@
 // ====================================================================
-// Потрібно створити картки продуктів
-const instruments = [
+//
+// const cars = [
+//   {
+//     model: 'Honda',
+//     type: 'Civic',
+//     price: 12000,
+//     img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTCOHzdE-dK6WK7ax8NzQolTcCWA_jhJD-CRGWfqKJIJuGs8ML_-OyiDwzsdC8jOi_K10&usqp=CAU',
+//   },
+//   {
+//     model: 'Audi',
+//     type: 'Q7',
+//     price: 40000,
+//     img: 'https://upload.wikimedia.org/wikipedia/commons/8/8b/2017_Audi_Q7_S_Line_Quattro_3.0_Front.jpg',
+//   },
+//   {
+//     model: 'BMW',
+//     type: '5 siries',
+//     price: 9000,
+//     img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUH96e58ynLO8SXMsFTNYkJci79eAZ8CyqcZsZ8snvzz2sfLl3Ojd1BQoaWBcrMKWvSYc&usqp=CAU',
+//   },
+//   {
+//     model: 'Honda',
+//     type: 'Accord',
+//     price: 20000,
+//     img: 'https://upload.wikimedia.org/wikipedia/commons/7/76/2021_Honda_Accord_Sport_%28facelift%29%2C_front_11.30.21.jpg',
+//   },
+//   {
+//     model: 'Volvo',
+//     type: 'XC60',
+//     price: 7000,
+//     img: 'https://www.volvocars.com/media/shared-assets/master/images/pages/my19/xc60-my19/accessories/xc60my19_accessories_exteriorfeature2_1.jpg?w=320',
+//   },
+// ];
+
+// const carForm = document.querySelector('.js-form');
+// const cardList = document.querySelector('.js-card-list');
+
+// console.log(carForm);
+// console.log(cardList);
+
+// function createMarkup(arr) {
+//   const markup = arr.map(({ model, type, price, img }) => {
+//     return `<li>
+//         <img src="${img}" alt="${type}" width="300">
+//         <h2>${model}</h2>
+//         <h3>${type}</h3>
+//         <p>${price}</p>
+//       </li>`;
+//   });
+//   // console.log(markup);
+//   return markup.join('');
+// }
+
+// createMarkup(cars);
+// console.log(createMarkup(cars));
+// cardList.insertAdjacentHTML('afterbegin', createMarkup(cars));
+
+// ====================================================================
+
+const cars = [
   {
-    id: 1,
-    img: 'https://static.dnipro-m.ua/cache/products/1754/catalog_origin_261194.jpg',
-    name: 'Молоток',
-    price: 150,
+    model: 'Honda',
+    type: 'Civic',
+    price: 12000,
+    img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTCOHzdE-dK6WK7ax8NzQolTcCWA_jhJD-CRGWfqKJIJuGs8ML_-OyiDwzsdC8jOi_K10&usqp=CAU',
   },
   {
-    id: 2,
-    img: 'https://static.dnipro-m.ua/cache/products/5587/catalog_origin_190742.jpg',
-    name: 'Перфоратор',
-    price: 3000,
+    model: 'Audi',
+    type: 'Q7',
+    price: 40000,
+    img: 'https://upload.wikimedia.org/wikipedia/commons/8/8b/2017_Audi_Q7_S_Line_Quattro_3.0_Front.jpg',
   },
   {
-    id: 3,
-    img: 'https://static.dnipro-m.ua/cache/products/2299/catalog_origin_261034.jpg',
-    name: 'Рівень',
-    price: 2000,
+    model: 'BMW',
+    type: '5 siries',
+    price: 9000,
+    img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUH96e58ynLO8SXMsFTNYkJci79eAZ8CyqcZsZ8snvzz2sfLl3Ojd1BQoaWBcrMKWvSYc&usqp=CAU',
+  },
+  {
+    model: 'Honda',
+    type: 'Accord',
+    price: 20000,
+    img: 'https://upload.wikimedia.org/wikipedia/commons/7/76/2021_Honda_Accord_Sport_%28facelift%29%2C_front_11.30.21.jpg',
+  },
+  {
+    model: 'Volvo',
+    type: 'XC60',
+    price: 7000,
+    img: 'https://www.volvocars.com/media/shared-assets/master/images/pages/my19/xc60-my19/accessories/xc60my19_accessories_exteriorfeature2_1.jpg?w=320',
   },
 ];
+const carForm = document.querySelector('.js-form');
+const carList = document.querySelector('.js-card-list');
 
-const listContainer = document.querySelector('.js-list');
-console.log(listContainer);
-
-const markUp = instruments.map(el => {
-  const li = document.createElement('li');
-  const img = document.createElement('img');
-  const span = document.createElement('span');
-  const title = document.createElement('h2');
-
-  img.src = el.img;
-  img.alt = el.name;
-  img.width = 300;
-  span.textContent = el.price;
-  title.textContent = el.name;
-
-  li.append(img, title, span);
-
-  return li;
-});
-
-listContainer.append(...markUp);
-
-// ====================================================================
-
-const listContainer = document.querySelector('.js-list');
-const markup = instruments
-  .map(
-    ({ img, name, price }) =>
+function createMarkup(arr) {
+  const markup = arr.map(
+    ({ model, type, price, img }) =>
       `<li>
-        <img src="${img}" alt="${name}" width="300">
-        <h2>${name}</h2>
-        <span>${price}</span>
-    </li>`,
-  )
-  .join('');
-console.log(markup);
-listContainer.insertAdjacentHTML('afterbegin', markup);
+  <h2>${model}</h2>
+  <h3>${type}</h3>
+  <img src="${img}" alt="${type}" width=300px>
+  <p>${price}</p>
+</li>`,
+  );
+  return markup.join('');
+}
 
-// ====================================================================
+createMarkup(cars);
+carList.insertAdjacentHTML('afterbegin', createMarkup(cars));
 
-//const listContainer = document.querySelector('.js-list')
-// listContainer.style.display = "flex";
-// listContainer.style.listStyle = "none"
+carForm.addEventListener('submit', handlerSubmitForm);
 
-//listContainer.classList.add("list")
-//listContainer.classList.remove("list")
+function handlerSubmitForm(evt) {
+  evt.preventDefault();
+  const { query, type } = evt.currentTarget.elements;
+  const key = type.value;
+  const inputValue = query.value;
 
-// listContainer.classList.toggle("list")
-// listContainer.classList.toggle("list")
-
-// const markUp = instruments.map((el) => {
-
-//     const li = document.createElement('li')
-//     const img = document.createElement('img')
-//     const span = document.createElement('span')
-//     const title = document.createElement('h2')
-
-//     img.src = el.img
-//     img.alt = el.name
-//     img.width = 300
-//     span.textContent = el.price
-//     title.textContent = el.name
-
-//     li.classList.add("item", "item-style")
-//     span.classList.add("text")
-//     title.classList.add("title")
-
-//     li.append(img, title, span)
-
-//     return li
-// })
-
-// listContainer.append(...markUp)
-
-const listContainer = document.querySelector('.js-list');
-const markup = instruments
-  .map(
-    ({ img, name, price }) =>
-      `<li class="item item-style">
-        <img src="${img}" alt="${name}" width="300">
-        <h2 class="text">${name}</h2>
-        <span class="title">${price}</span>
-    </li>`,
-  )
-  .join('');
-console.log(markup);
-listContainer.insertAdjacentHTML('afterbegin', markup);
+  const searchCars = cars.filter(el => {
+    console.log(`el[key] - ${el[key]}`, `inputValue - ${inputValue}`);
+    return el[key].toLowerCase() === inputValue.toLowerCase();
+  });
+  carList.innerHTML = createMarkup(searchCars);
+}
